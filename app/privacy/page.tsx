@@ -1,0 +1,1 @@
+export default () => (<section className='section container'><h1 className='h1'>Privacitat</h1><p>Text de privacitat (placeholder).</p></section>)
