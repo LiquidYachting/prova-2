@@ -1,5 +1,12 @@
 export const dynamic = "force-static";
 
+const WA = "https://wa.me/34626170690?text=" +
+  encodeURIComponent("Captain’s Access — Please call/WhatsApp me back.");
+
+const FORMSPREE =
+  process.env.NEXT_PUBLIC_FORMSPREE_CAPTAINS ||
+  "https://formspree.io/f/xqaybned"; // canvia'l a Vercel si en tens un d'exclusiu
+
 export default function CaptainsAccessPage() {
   return (
     <main className="bg-white">
@@ -41,24 +48,12 @@ export default function CaptainsAccessPage() {
       <section className="container mx-auto px-6 xl:px-10 py-10 border-t">
         <h2 className="text-2xl font-semibold text-slate-900">Key advantages</h2>
         <ul className="mt-4 grid md:grid-cols-2 gap-3 text-slate-700">
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">Priority access</b> to vetted tenders & chase boats (Mediterranean-wide).
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">Timing-first</b>: honest availability, clear handover windows, no surprises.
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">Operational clarity</b>: specs, hours, condition and photos that matter.
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">Lean comms</b>: one thread, one decision-maker, no back-and-forth.
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">Discreet handling</b>: owner privacy and programme confidentiality.
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">Aftercare network</b>: survey, transport, registration, insurance, technical.
-          </li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">Priority access</b> to vetted tenders & chase boats (Mediterranean-wide).</li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">Timing-first</b>: honest availability, clear handover windows, no surprises.</li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">Operational clarity</b>: specs, hours, condition and photos that matter.</li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">Lean comms</b>: one thread, one decision-maker, no back-and-forth.</li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">Discreet handling</b>: owner privacy and programme confidentiality.</li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">Aftercare network</b>: survey, transport, registration, insurance, technical.</li>
         </ul>
       </section>
 
@@ -75,54 +70,54 @@ export default function CaptainsAccessPage() {
       <section className="container mx-auto px-6 xl:px-10 py-10 border-t">
         <h2 className="text-2xl font-semibold text-slate-900">How it works</h2>
         <ol className="mt-4 grid md:grid-cols-3 gap-4">
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">1. Brief</b>
-            <p className="text-slate-700 mt-1 text-sm">
-              Length/speed range, pax, deck footprint, handover location/date, budget band.
-            </p>
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">2. Shortlist</b>
-            <p className="text-slate-700 mt-1 text-sm">
-              Tight selection with real ETAs and pros/cons. No more than three options unless requested.
-            </p>
-          </li>
-          <li className="rounded-xl border p-4">
-            <b className="text-slate-900">3. Secure & Deliver</b>
-            <p className="text-slate-700 mt-1 text-sm">
-              Lock terms, coordinate survey/transport, handover ready for service.
-            </p>
-          </li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">1. Brief</b><p className="text-slate-700 mt-1 text-sm">Length/speed, pax, deck footprint, handover location/date, budget band.</p></li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">2. Shortlist</b><p className="text-slate-700 mt-1 text-sm">Tight selection with real ETAs and pros/cons. No more than three options unless requested.</p></li>
+          <li className="rounded-xl border p-4"><b className="text-slate-900">3. Secure & Deliver</b><p className="text-slate-700 mt-1 text-sm">Lock terms, coordinate survey/transport, handover ready for service.</p></li>
         </ol>
-        <p className="mt-3 text-slate-500 text-sm">
-          Lead times: same-week possible within peak routes; otherwise 7–14 days typical depending on spec and location.
-        </p>
+        <p className="mt-3 text-slate-500 text-sm">Lead times: same-week possible within peak routes; otherwise 7–14 days typical depending on spec and location.</p>
       </section>
 
-      {/* CTA */}
-      <section className="container mx-auto px-6 xl:px-10 py-14 border-t">
+      {/* Captain’s Access – microform */}
+      <section id="access" className="container mx-auto px-6 xl:px-10 py-14 border-t">
         <div className="rounded-2xl border p-6 bg-slate-50">
           <h3 className="text-xl font-semibold text-slate-900">Captain’s Access</h3>
-          <p className="mt-2 text-slate-700">
-            Tell us what you need and when — we’ll respond quickly with a workable plan.
-          </p>
+          <p className="mt-2 text-slate-700">Open a direct channel. We’ll come back quickly with a workable plan.</p>
+
+          <form action={FORMSPREE} method="POST" className="mt-6 grid gap-4 max-w-xl" accept-charset="UTF-8">
+            <label className="grid gap-1">
+              <span className="text-sm text-slate-600">Name / Vessel</span>
+              <input name="name" required className="rounded-xl border px-3 py-2" />
+            </label>
+
+            <label className="grid gap-1">
+              <span className="text-sm text-slate-600">Preferred contact</span>
+              <select name="contact" className="rounded-xl border px-3 py-2">
+                <option>WhatsApp</option>
+                <option>Phone</option>
+                <option>Email</option>
+              </select>
+            </label>
+
+            <label className="grid gap-1">
+              <span className="text-sm text-slate-600">Short message (optional)</span>
+              <textarea name="message" rows={3} className="rounded-xl border px-3 py-2" />
+            </label>
+
+            {/* hidden tag to identify source */}
+            <input type="hidden" name="source" value="captains-access" />
+
+            <button type="submit" className="rounded-xl px-5 py-3 bg-cyan-600 text-white font-semibold hover:bg-cyan-700">
+              Open Captain’s Channel
+            </button>
+          </form>
+
           <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href="/contact"
-              className="inline-flex items-center rounded-xl px-5 py-3 bg-cyan-600 text-white font-semibold hover:bg-cyan-700"
-            >
-              Captain’s Access
-            </a>
-            <a
-              href="mailto:info@liquid-yachting.com"
-              className="inline-flex items-center rounded-xl px-5 py-3 border border-slate-300 hover:bg-slate-50"
-            >
-              Speak with operations
-            </a>
+            <a href={WA} className="inline-flex items-center rounded-xl px-4 py-2 border border-slate-300 hover:bg-slate-100">WhatsApp</a>
+            <a href="mailto:info@liquid-yachting.com?subject=Captain’s Access" className="inline-flex items-center rounded-xl px-4 py-2 border border-slate-300 hover:bg-slate-100">Email</a>
+            <a href="tel:+34626170690" className="inline-flex items-center rounded-xl px-4 py-2 border border-slate-300 hover:bg-slate-100">Call</a>
           </div>
-          <p className="mt-3 text-xs text-slate-500">
-            We keep it discreet. Your details are only used to respond to this request.
-          </p>
+
+          <p className="mt-3 text-xs text-slate-500">We keep it discreet. Your details are only used to respond to this request.</p>
         </div>
       </section>
 
@@ -133,9 +128,7 @@ export default function CaptainsAccessPage() {
           We’re a brokerage and operations partner focused on timing and fit. Ten years in the Med with owners, captains and shipyards
           means we know what’s practical when the schedule is not. If you just need it done — properly and quietly — we’re a good match.
         </p>
-        <p className="mt-3 text-slate-600">
-          Direct line · info@liquid-yachting.com · +34 626 170 690 · CAT · ES · EN · FR · DE
-        </p>
+        <p className="mt-3 text-slate-600">Direct line · info@liquid-yachting.com · +34 626 170 690 · CAT · ES · EN · FR · DE</p>
       </section>
     </main>
   );
