@@ -1,5 +1,8 @@
 // lib/inventory.ts
-type InvItem = {
+import fs from "node:fs/promises";
+import path from "node:path";
+
+export type InvItem = {
   id: string;
   slug: string;
   title: string;
@@ -25,21 +28,24 @@ type InvItem = {
   type?: string;
 };
 
-function baseUrl() {
-  // Server: Vercel exposa VERCEL_URL (sense protocol)
-  if (typeof window === "undefined") {
-    const v = process.env.VERCEL_URL;
-    return v ? `https://${v}` : "http://localhost:3000";
-  }
-  // Client: rutes relatives
-  return "";
+async function loadFromFS(): Promise<InvItem[]> {
+  const filePath = path.join(process.cwd(), "public", "data", "inventory.json");
+  const raw = await fs.readFile(filePath, "utf-8");
+  const arr = JSON.parse(raw);
+  return Array.isArray(arr) ? arr : [];
+}
+
+async function loadFromHTTP(): Promise<InvItem[]> {
+  const res = await fetch("/data/inventory.json", { cache: "no-store" });
+  const arr = await res.json();
+  return Array.isArray(arr) ? arr : [];
 }
 
 export async function loadInventory(): Promise<InvItem[]> {
-  const res = await fetch(`${baseUrl()}/data/inventory.json`, { cache: "no-store" });
-  if (!res.ok) throw new Error("No puc carregar /data/inventory.json");
-  const json = await res.json();
-  return Array.isArray(json) ? json : [];
+  // Server (build / SSR): llegim del disc → funciona a Vercel
+  if (typeof window === "undefined") return loadFromFS();
+  // Client (navegador): fetch relatiu
+  return loadFromHTTP();
 }
 
 export async function loadItemBySlug(slug: string): Promise<InvItem | null> {
