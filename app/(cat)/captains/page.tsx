@@ -1,7 +1,9 @@
 export const dynamic = "force-static";
 
-const WA = "https://wa.me/34626170690?text=" +
-  encodeURIComponent("Captain’s Access — Please call/WhatsApp me back.");
+const WA_MSG =
+  "Captain’s Access – Liqüid Yachting\nHello, I’d like to discuss a tender / chase boat. Please contact me directly when possible.";
+
+const WA = "https://wa.me/34626170690?text=" + encodeURIComponent(WA_MSG);
 
 const FORMSPREE =
   process.env.NEXT_PUBLIC_FORMSPREE_CAPTAINS ||
