@@ -1,4 +1,4 @@
-// lib/inventory.ts
+import "server-only";// lib/inventory.ts
 import fs from "node:fs/promises";
 import path from "node:path";
 
