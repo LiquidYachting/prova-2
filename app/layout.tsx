@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { Cinzel } from 'next/font/google'
 import Link from 'next/link'
 import SiteHeader from '@/components/SiteHeader'
+import SiteFooter from "@/components/SiteFooter";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const cinzel = Cinzel({ subsets: ['latin'], weight: ['400','500','700'], variable: '--font-cinzel' })
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.variable} ${cinzel.variable}`}>
         <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   )
