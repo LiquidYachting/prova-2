@@ -1,12 +1,13 @@
 'use client'
 import Link from 'next/link'
+import type { Route } from "next";
 
 export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
       <div className="container mx-auto px-6 xl:px-10 h-16 flex items-center justify-between">
         {/* Logo / Nom */}
-        <Link href="/" className="text-xl font-semibold tracking-wide text-slate-900">
+        <Link href={"/" as Route} className="text-xl font-semibold tracking-wide text-slate-900">
           Liqüid Yachting
         </Link>
 
