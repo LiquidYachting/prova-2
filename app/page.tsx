@@ -1,6 +1,7 @@
 // app/page.tsx
 import Link from "next/link";
 import { loadInventory } from "@/lib/inventory";
+import LiqYChatWidget from "@/components/LiqYChatWidget";
 
 function Price({ v }: { v: number | null | undefined }) {
   if (v == null) return <span>POA</span>;
@@ -163,6 +164,7 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+      <LiqYChatWidget />
     </main>
   );
 }
